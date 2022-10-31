@@ -1,0 +1,26 @@
+.input {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+
+  &__label {
+    position: relative;
+    left: 15px;
+    font-size: var(--sm-font-size);
+    font-weight: var(--standard-font-weight);
+  }
+
+  &__field {
+    padding: 5px 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    font-size: var(--standard-font-size);
+    font-weight: var(--standard-font-weight);
+    border: 1px solid var(--primary-border-color);
+    border-radius: var(--standard-border-radius);
+  }
+}
