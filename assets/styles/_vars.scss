@@ -1,0 +1,23 @@
+:root {
+  --primary-text-color: #303030;
+  --primary-border-color: #b7b7b7;
+  --active-border-color: #60b0ff;
+  --standard-font-size: 16px;
+  --sm-font-size: 14px;
+  --xs-font-size: 12px;
+  --lg-font-size: 18px;
+  --xl-font-size: 24px;
+  --xxl-font-size: 32px;
+  --standard-font-weight: 400;
+  --bold-font-weight: 600;
+  --standard-border-radius: 8px;
+  --sm-border-radius: calc(var(--standard-border-radius) / 2);
+  --lg-border-radius: calc(var(--standard-border-radius) * 2);
+  --round-border-radius: 50%;
+}
+
+*,
+*::before,
+*::after {
+  color: var(--p-text-color);
+}
