@@ -7,15 +7,7 @@ const AuthForm = dynamic(
 
 const Index = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
+    <div id='wrapper'>
       <AuthForm />
     </div>
   );

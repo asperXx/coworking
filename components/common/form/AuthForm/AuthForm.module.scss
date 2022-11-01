@@ -1,3 +1,5 @@
+@use '@/assets/styles/global';
+
 .auth {
   max-height: 100vh;
   overflow-y: scroll;
@@ -5,7 +7,7 @@
   width: 100%;
   max-width: 360px;
   position: relative;
-  padding: 30px 40px;
+  padding: 30px 40px 40px 40px;
   background-color: var(--form-bg-color);
   border-radius: var(--xl-border-radius);
   box-shadow: var(--default-modal-shadow);
@@ -64,5 +66,16 @@
   }
 }
 
-@media (max-width: var(--sm-breakpoint)) {
+@media (max-width: global.$smBreakpoint) {
+  .auth {
+    max-width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: 80px;
+    box-shadow: none;
+
+    &__controls {
+      row-gap: 15px;
+    }
+  }
 }

@@ -1,11 +1,30 @@
-import AppButton from '@/components/ui/AppButton/AppButton';
+import { useState } from 'react';
+
+import AppButton from '@ui/AppButton/AppButton';
 import AppInput from '@ui/AppInput/AppInput';
+
 import styles from './AuthForm.module.scss';
 
 const AuthForm = () => {
+  interface AuthFormData {
+    email: string;
+    password: string;
+  }
+
+  const initialFormData: AuthFormData = {
+    email: '',
+    password: '',
+  };
+
   const onFormSubmit = event => {
     event.preventDefault();
-    console.log(event);
+    alert(JSON.stringify(form, null, 2));
+  };
+
+  const [form, setForm] = useState(initialFormData);
+
+  const onChange = (field: keyof AuthFormData, value: string) => {
+    setForm(prevForm => ({ ...prevForm, [field]: value }));
   };
 
   return (
@@ -25,6 +44,7 @@ const AuthForm = () => {
             required={true}
             placeholder='example@gmail.com'
             label='Email'
+            onChange={(value: string) => onChange('email', value)}
           />
           <AppInput
             className={styles['auth__input']}
@@ -33,6 +53,7 @@ const AuthForm = () => {
             required={true}
             placeholder='●●●●●●●●'
             label='Password'
+            onChange={(value: string) => onChange('password', value)}
           />
         </div>
         <div className={styles['auth__controls']}>

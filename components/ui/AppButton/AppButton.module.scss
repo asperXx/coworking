@@ -10,14 +10,14 @@
   font-size: var(--default-font-size);
   font-weight: var(--default-font-weight);
   outline: none;
-  transition-property: border;
+  box-shadow: 0 0 0 0 none;
+  transition-property: border, background-color, color, box-shadow;
   transition-duration: var(--quick-transition-duration);
   transition-timing-function: var(--default-timing-function);
   cursor: pointer;
 
   &:focus,
-  &:active,
-  &:hover {
+  &:active {
     border: 2px solid var(--active-element-color);
   }
 
@@ -36,9 +36,15 @@
     }
 
     &:focus,
-    &:active,
-    &:hover {
+    &:active {
+      background-color: var(--secondary-bg-color);
       box-shadow: var(--active-element-primary-shadow);
+
+      .button {
+        &__label {
+          color: var(--active-element-color);
+        }
+      }
     }
   }
 

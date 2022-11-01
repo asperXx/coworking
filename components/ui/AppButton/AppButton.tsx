@@ -18,7 +18,6 @@ const AppButton = ({
   if (!color) {
     color = 'primary';
   }
-  console.log(styles);
   const currentClassName = `${styles.button} ${styles[`button_${color}`]}${
     className ? ` ${className}` : ''
   }`;
