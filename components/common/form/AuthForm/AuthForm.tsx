@@ -61,13 +61,11 @@ const AuthForm = () => {
             label='Continue'
             className={styles['auth__button']}
             type='submit'
-            style={{ width: '100%' }}
           />
           <AppButton
             label='Sign up'
             className={styles['auth__button']}
             color='secondary'
-            style={{ width: '100%' }}
           />
         </div>
       </form>
