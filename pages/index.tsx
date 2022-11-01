@@ -1,23 +1,24 @@
-import AppInput from '@/components/ui/AppInput/AppInput';
-import { getRandomString } from '@/utils/string';
+import dynamic from 'next/dynamic';
 
-const Index = ({ inputId }) => {
+const AuthForm = dynamic(
+  () => import('@/components/common/form/AuthForm/AuthForm'),
+  { ssr: false },
+);
+
+const Index = () => {
   return (
-    <div>
-      index page
-      <AppInput
-        inputId={inputId}
-        label='lol'
-        attrs={{ type: 'text' }}
-      />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100vh',
+      }}
+    >
+      <AuthForm />
     </div>
   );
 };
 
 export default Index;
-
-export function getStaticProps() {
-  return {
-    props: { inputId: getRandomString() },
-  };
-}

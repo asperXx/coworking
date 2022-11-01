@@ -1,0 +1,68 @@
+.auth {
+  max-height: 100vh;
+  overflow-y: scroll;
+  height: unset;
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  padding: 30px 40px;
+  background-color: var(--form-bg-color);
+  border-radius: var(--xl-border-radius);
+  box-shadow: var(--default-modal-shadow);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+
+  &,
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column nowrap;
+  }
+
+  &__form {
+    width: 100%;
+    row-gap: 25px;
+  }
+
+  &__title {
+    font-size: var(--xl-font-size);
+    font-weight: var(--bold-font-weight);
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: column nowrap;
+    row-gap: 15px;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: column nowrap;
+    width: 100%;
+    row-gap: 10px;
+  }
+
+  &__input {
+    width: 100%;
+  }
+}
+
+@media (max-width: var(--sm-breakpoint)) {
+}

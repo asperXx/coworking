@@ -1,19 +1,40 @@
+import { getRandomString } from '@/utils/string';
+
 import styles from './AppInput.module.scss';
 
-const AppInput = ({ attrs, inputId, label }) => {
+interface AppInputProps {
+  inputId?: string;
+  label?: string;
+  className?: string;
+  [x: string]: any;
+}
+
+const AppInput = (
+  { inputId, label, className, ...attrs }: AppInputProps = {
+    inputId: '',
+    label: 'input',
+    type: 'text',
+  },
+) => {
+  if (!inputId) {
+    inputId = getRandomString();
+  }
   return (
-    <div className={styles.input}>
+    <div
+      suppressHydrationWarning={true}
+      className={`${styles.input}${className ? ` ${className}` : ''}`}
+    >
+      <input
+        className={styles['input__field']}
+        id={inputId}
+        {...attrs}
+      />
       <label
         className={styles['input__label']}
         htmlFor={inputId}
       >
         {label}
       </label>
-      <input
-        className={styles['input__field']}
-        id={inputId}
-        {...attrs}
-      />
     </div>
   );
 };

@@ -1,23 +1,31 @@
 :root {
-  --primary-text-color: #303030;
+  --primary-text-color: #444444;
+  --primary-light-text-color: #eaeaea;
   --primary-border-color: #b7b7b7;
-  --active-border-color: #60b0ff;
-  --standard-font-size: 16px;
+  --primary-bg-color: #3c86d0;
+  --secondary-bg-color: #dbe0e7;
+  --active-element-color: #519ae4;
+  --active-element-primary-shadow: 0 4px 8px 0 rgb(60 134 208 / 40%);
+  --form-bg-color: #edf1f4;
+  --default-shadow-color: rgba(65, 70, 75, 0.2);
+  --default-modal-shadow: 0 6px 12px 0px var(--default-shadow-color);
+  --default-font-size: 16px;
   --sm-font-size: 14px;
   --xs-font-size: 12px;
   --lg-font-size: 18px;
   --xl-font-size: 24px;
   --xxl-font-size: 32px;
-  --standard-font-weight: 400;
-  --bold-font-weight: 600;
-  --standard-border-radius: 8px;
-  --sm-border-radius: calc(var(--standard-border-radius) / 2);
-  --lg-border-radius: calc(var(--standard-border-radius) * 2);
+  --default-font-weight: 400;
+  --semibold-font-weight: 500;
+  --bold-font-weight: 700;
+  --default-border-radius: 8px;
+  --sm-border-radius: calc(var(--default-border-radius) / 2);
+  --lg-border-radius: calc(var(--default-border-radius) * 2);
+  --xl-border-radius: calc(var(--default-border-radius) * 3);
   --round-border-radius: 50%;
-}
-
-*,
-*::before,
-*::after {
-  color: var(--p-text-color);
+  --default-transition-duration: 0.2s;
+  --quick-transition-duration: 0.133s;
+  --slow-transition-duration: 0.3s;
+  --default-timing-function: ease-in-out;
+  --sm-breakpoint: 480px;
 }
