@@ -7,6 +7,7 @@ module.exports = {
   ) => {
     const alias = config.resolve.alias;
     alias['@'] = path.resolve(__dirname);
+    alias['@ui'] = path.resolve(__dirname, './components/ui');
     return config;
   },
 };

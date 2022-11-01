@@ -4,24 +4,47 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-flow: column nowrap;
+  flex-flow: column-reverse nowrap;
+  row-gap: 4px;
 
   &__label {
     position: relative;
     left: 15px;
     font-size: var(--sm-font-size);
-    font-weight: var(--standard-font-weight);
+    font-weight: var(--semibold-font-weight);
+    transition-property: color;
+    transition-duration: var(--quick-transition-duration);
+    transition-timing-function: var(--default-transition-function);
   }
 
   &__field {
-    padding: 5px 15px;
+    width: 100%;
+    padding: 8px 16px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     text-align: left;
-    font-size: var(--standard-font-size);
-    font-weight: var(--standard-font-weight);
-    border: 2px solid var(--primary-border-color);
-    border-radius: var(--standard-border-radius);
+    font-size: var(--default-font-size);
+    font-weight: var(--default-font-weight);
+    border: 1px solid var(--primary-border-color);
+    border-radius: var(--default-border-radius);
+    outline: none;
+    transition-property: border;
+    transition-duration: var(--quick-transition-duration);
+    transition-timing-function: var(--default-timing-function);
+
+    &::placeholder {
+      opacity: 0.3;
+    }
+  }
+
+  &__field:active,
+  &__field:focus {
+    border: 1px solid var(--active-element-color);
+  }
+
+  &__field:active + &__label,
+  &__field:focus + &__label {
+    color: var(--active-element-color);
   }
 }

@@ -1,0 +1,59 @@
+.button {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: var(--default-border-radius);
+  background-color: var(--primary-bg-color);
+  font-size: var(--default-font-size);
+  font-weight: var(--default-font-weight);
+  outline: none;
+  box-shadow: 0 0 0 0 none;
+  transition-property: border, background-color, color, box-shadow;
+  transition-duration: var(--quick-transition-duration);
+  transition-timing-function: var(--default-timing-function);
+  cursor: pointer;
+
+  &:focus,
+  &:active {
+    border: 2px solid var(--active-element-color);
+  }
+
+  &__label {
+    font-size: var(--default-font-size);
+    font-weight: var(--semibold-font-weight);
+    color: var(--primary-light-text-color);
+  }
+
+  &_primary {
+    background-color: var(--primary-bg-color);
+    .button {
+      &__label {
+        color: var(--primary-light-text-color);
+      }
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--secondary-bg-color);
+      box-shadow: var(--active-element-primary-shadow);
+
+      .button {
+        &__label {
+          color: var(--active-element-color);
+        }
+      }
+    }
+  }
+
+  &_secondary {
+    background-color: var(--secondary-bg-color);
+    .button {
+      &__label {
+        color: var(--primary-text-color);
+      }
+    }
+  }
+}
