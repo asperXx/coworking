@@ -4,6 +4,10 @@ import { Icon } from '@/types/common';
 
 import AppButton from '@ui/AppButton/AppButton';
 import AppInput from '@ui/AppInput/AppInput';
+import LockIcon from '@ui/icons/lock';
+import MailIcon from '@ui/icons/mail';
+import VisibilityIcon from '@ui/icons/visibility';
+import VisibilityOffIcon from '@ui/icons/visibilityOff';
 
 import styles from './AuthForm.module.scss';
 
@@ -45,7 +49,7 @@ const AuthForm = () => {
             required={true}
             placeholder='example@gmail.com'
             label='Email'
-            icons={{ prependInner: Icon.mail }}
+            icons={{ prependInner: <MailIcon /> }}
             onChange={(value: string) => (form.email = value)}
           />
           <AppInput
@@ -57,11 +61,13 @@ const AuthForm = () => {
             placeholder='●●●●●●●●'
             label='Password'
             icons={{
-              prependInner: Icon.lock,
+              prependInner: <LockIcon />,
               appendInner:
-                passwordInputType === 'password'
-                  ? Icon.visibility
-                  : Icon.visibilityOff,
+                passwordInputType === 'password' ? (
+                  <VisibilityIcon onClick={changePasswordInputType} />
+                ) : (
+                  <VisibilityOffIcon onClick={changePasswordInputType} />
+                ),
             }}
             onChange={(value: string) => (form.password = value)}
             onAppendInnerClick={changePasswordInputType}

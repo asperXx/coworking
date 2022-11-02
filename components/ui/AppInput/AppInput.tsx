@@ -1,6 +1,4 @@
-import { InputIconPositions } from '@/types/common';
-
-import IconProvider from '@ui/icons/IconProvider';
+import { cloneElement } from 'react';
 
 import styles from './AppInput.module.scss';
 
@@ -8,7 +6,7 @@ interface AppInputProps {
   label?: string;
   className?: string;
   children?: React.ReactNode;
-  icons?: InputIconPositions;
+  icons?: any;
   [x: string]: any;
 }
 
@@ -39,23 +37,16 @@ const AppInput = ({
         {...props}
       />
       <label className={styles['input__label']}>{label}</label>
-      {hasPrependInnerIcon ? (
-        <IconProvider
-          className={`${styles['input__icon']} ${styles['input__icon_prepend-inner']}`}
-          icon={icons.prependInner}
-        />
-      ) : (
-        ''
-      )}
-      {hasAppendInnerIcon ? (
-        <IconProvider
-          className={`${styles['input__icon']} ${styles['input__icon_append-inner']}`}
-          icon={icons.appendInner}
-          onClick={() => onAppendInnerClick()}
-        />
-      ) : (
-        ''
-      )}
+      {hasPrependInnerIcon
+        ? cloneElement(icons.prependInner, {
+            className: `${styles['input__icon']} ${styles['input__icon_prepend-inner']}`,
+          })
+        : ''}
+      {hasAppendInnerIcon
+        ? cloneElement(icons.appendInner, {
+            className: `${styles['input__icon']} ${styles['input__icon_append-inner']}`,
+          })
+        : ''}
     </div>
   );
 };
