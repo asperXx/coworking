@@ -14,21 +14,18 @@ import styles from './AuthForm.module.scss';
 const AuthForm = () => {
   const onFormSubmit = event => {
     event.preventDefault();
-    alert(JSON.stringify(form, null, 2));
+    alert(JSON.stringify({ email, password }, null, 2));
   };
 
   const [passwordInputType, setPasswordInputType] =
     useState<string>('password');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const changePasswordInputType = () => {
     setPasswordInputType(prev => {
       return prev === 'password' ? 'text' : 'password';
     });
-  };
-
-  const form = {
-    email: '',
-    password: '',
   };
 
   return (
@@ -50,7 +47,7 @@ const AuthForm = () => {
             placeholder='example@gmail.com'
             label='Email'
             icons={{ prependInner: <MailIcon /> }}
-            onChange={(value: string) => (form.email = value)}
+            onChange={(value: string) => setEmail(value)}
           />
           <AppInput
             key='password'
@@ -69,7 +66,7 @@ const AuthForm = () => {
                   <VisibilityOffIcon onClick={changePasswordInputType} />
                 ),
             }}
-            onChange={(value: string) => (form.password = value)}
+            onChange={(value: string) => setPassword(value)}
             onAppendInnerClick={changePasswordInputType}
           />
         </div>
