@@ -16,7 +16,7 @@
   transition-timing-function: var(--default-timing-function);
   cursor: pointer;
 
-  &:focus,
+  &:focus-visible,
   &:active {
     border: 2px solid var(--active-element-color);
   }
@@ -35,7 +35,7 @@
       }
     }
 
-    &:focus,
+    &:focus-visible,
     &:active {
       background-color: var(--secondary-bg-color);
       box-shadow: var(--active-element-primary-shadow);

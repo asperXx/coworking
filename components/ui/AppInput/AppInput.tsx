@@ -2,11 +2,11 @@ import { cloneElement } from 'react';
 
 import styles from './AppInput.module.scss';
 
-interface AppInputProps {
+export interface AppInputProps {
   label?: string;
   className?: string;
   children?: React.ReactNode;
-  icons?: any;
+  icons?: { [x: string]: JSX.Element };
   [x: string]: any;
 }
 
@@ -39,12 +39,16 @@ const AppInput = ({
       <label className={styles['input__label']}>{label}</label>
       {hasPrependInnerIcon
         ? cloneElement(icons.prependInner, {
-            className: `${styles['input__icon']} ${styles['input__icon_prepend-inner']}`,
+            className: `${styles['input__icon']} ${
+              styles['input__icon_prepend-inner']
+            } ${icons.prependInner.props?.className || ''}`,
           })
         : ''}
       {hasAppendInnerIcon
         ? cloneElement(icons.appendInner, {
-            className: `${styles['input__icon']} ${styles['input__icon_append-inner']}`,
+            className: `${styles['input__icon']} ${
+              styles['input__icon_append-inner']
+            } ${icons.appendInner.props?.className || ''}`,
           })
         : ''}
     </div>
