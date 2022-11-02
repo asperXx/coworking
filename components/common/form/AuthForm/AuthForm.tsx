@@ -1,6 +1,4 @@
-import { createRef, forwardRef, useRef, useState } from 'react';
-
-import { Icon } from '@/types/common';
+import { useState } from 'react';
 
 import AppButton from '@ui/AppButton/AppButton';
 import AppInput from '@ui/AppInput/AppInput';
