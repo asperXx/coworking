@@ -1,30 +1,30 @@
 import { useState } from 'react';
 
+import { Icon } from '@/types/common';
+
 import AppButton from '@ui/AppButton/AppButton';
 import AppInput from '@ui/AppInput/AppInput';
 
 import styles from './AuthForm.module.scss';
 
 const AuthForm = () => {
-  interface AuthFormData {
-    email: string;
-    password: string;
-  }
-
-  const initialFormData: AuthFormData = {
-    email: '',
-    password: '',
-  };
-
   const onFormSubmit = event => {
     event.preventDefault();
     alert(JSON.stringify(form, null, 2));
   };
 
-  const [form, setForm] = useState(initialFormData);
+  const [passwordInputType, setPasswordInputType] =
+    useState<string>('password');
 
-  const onChange = (field: keyof AuthFormData, value: string) => {
-    setForm(prevForm => ({ ...prevForm, [field]: value }));
+  const changePasswordInputType = () => {
+    setPasswordInputType(prev => {
+      return prev === 'password' ? 'text' : 'password';
+    });
+  };
+
+  const form = {
+    email: '',
+    password: '',
   };
 
   return (
@@ -38,22 +38,33 @@ const AuthForm = () => {
         </div>
         <div className={styles['auth__content']}>
           <AppInput
+            key='email'
             className={styles['auth__input']}
             type='email'
             autoComplete='username'
             required={true}
             placeholder='example@gmail.com'
             label='Email'
-            onChange={(value: string) => onChange('email', value)}
+            icons={{ prependInner: Icon.mail }}
+            onChange={(value: string) => (form.email = value)}
           />
           <AppInput
+            key='password'
             className={styles['auth__input']}
-            type='password'
+            type={passwordInputType}
             autoComplete='current-password'
             required={true}
             placeholder='●●●●●●●●'
             label='Password'
-            onChange={(value: string) => onChange('password', value)}
+            icons={{
+              prependInner: Icon.lock,
+              appendInner:
+                passwordInputType === 'password'
+                  ? Icon.visibility
+                  : Icon.visibilityOff,
+            }}
+            onChange={(value: string) => (form.password = value)}
+            onAppendInnerClick={changePasswordInputType}
           />
         </div>
         <div className={styles['auth__controls']}>

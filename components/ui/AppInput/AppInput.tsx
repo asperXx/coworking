@@ -1,45 +1,61 @@
-import { getRandomString } from '@/utils/string';
+import { InputIconPositions } from '@/types/common';
+
+import IconProvider from '@ui/icons/IconProvider';
 
 import styles from './AppInput.module.scss';
 
 interface AppInputProps {
-  inputId?: string;
   label?: string;
   className?: string;
-  onChange: (value: string) => void;
+  children?: React.ReactNode;
+  icons?: InputIconPositions;
   [x: string]: any;
 }
 
-const AppInput = (
-  { inputId, label, className, onChange, ...attrs }: AppInputProps = {
-    inputId: '',
-    label: 'input',
-    type: 'text',
-    onChange: () => {},
-  },
-) => {
-  if (!inputId) {
-    inputId = getRandomString();
-  }
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    onChange(event.target.value);
+const AppInput = ({
+  label,
+  className,
+  icons,
+  onChange,
+  onAppendInnerClick,
+  ...props
+}: AppInputProps) => {
+  const hasPrependInnerIcon = Boolean(icons.prependInner);
+  const hasAppendInnerIcon = Boolean(icons.appendInner);
+  const currentClassName = [
+    styles.input,
+    className,
+    hasPrependInnerIcon && styles['input_prepend-inner'],
+    hasAppendInnerIcon && styles['input_append-inner'],
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div
-      suppressHydrationWarning={true}
-      className={`${styles.input}${className ? ` ${className}` : ''}`}
-    >
+    <div className={currentClassName}>
       <input
         className={styles['input__field']}
-        id={inputId}
-        onChange={onInputChange}
-        {...attrs}
+        onChange={e => onChange(e.target.value)}
+        {...props}
       />
-      <label
-        className={styles['input__label']}
-        htmlFor={inputId}
-      >
-        {label}
-      </label>
+      <label className={styles['input__label']}>{label}</label>
+      {hasPrependInnerIcon ? (
+        <IconProvider
+          className={`${styles['input__icon']} ${styles['input__icon_prepend-inner']}`}
+          icon={icons.prependInner}
+        />
+      ) : (
+        ''
+      )}
+      {hasAppendInnerIcon ? (
+        <IconProvider
+          className={`${styles['input__icon']} ${styles['input__icon_append-inner']}`}
+          icon={icons.appendInner}
+          onClick={() => onAppendInnerClick()}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
 };

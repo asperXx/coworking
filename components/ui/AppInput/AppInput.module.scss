@@ -1,5 +1,6 @@
+$hSpacing: 12px;
+
 .input {
-  width: fit-content;
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -9,12 +10,13 @@
 
   &__label {
     position: relative;
-    left: 15px;
+    left: $hSpacing;
     font-size: var(--sm-font-size);
-    font-weight: var(--semibold-font-weight);
+    font-weight: var(--default-font-weight);
+    color: var(--primary-text-color);
     transition-property: color;
     transition-duration: var(--quick-transition-duration);
-    transition-timing-function: var(--default-transition-function);
+    transition-timing-function: var(--default-timing-function);
   }
 
   &__field {
@@ -38,13 +40,63 @@
     }
   }
 
+  &__icon {
+    position: absolute;
+    min-width: var(--default-icon-size);
+    width: var(--default-icon-size);
+    height: var(--default-icon-size);
+    color: var(--primary-border-color);
+    transition-property: color;
+    transition-duration: var(--quick-transition-duration);
+    transition-timing-function: var(--default-timing-function);
+
+    &_prepend-inner {
+      top: 50%;
+      left: $hSpacing;
+    }
+    &_prepend-outer {
+      top: 0;
+      left: 0;
+    }
+    &_append-inner {
+      cursor: pointer;
+      top: 50%;
+      right: $hSpacing;
+    }
+    &_append-outer {
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &_prepend-inner {
+    .input {
+      &__field {
+        padding-left: 40px;
+      }
+    }
+  }
+
+  &_append-inner {
+    .input {
+      &__field {
+        padding-right: 40px;
+      }
+    }
+  }
+
   &__field:active,
   &__field:focus {
     border: 1px solid var(--active-element-color);
   }
 
-  &__field:active + &__label,
-  &__field:focus + &__label {
+  &__field:active ~ &__label,
+  &__field:focus ~ &__label {
+    color: var(--active-element-color);
+  }
+
+  &__field:active ~ &__icon,
+  &__field:focus ~ &__icon {
     color: var(--active-element-color);
   }
 }
