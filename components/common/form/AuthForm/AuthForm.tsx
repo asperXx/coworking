@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { Icon } from '@/types/common';
-
 import AppButton from '@ui/AppButton/AppButton';
 import AppInput from '@ui/AppInput/AppInput';
 import LockIcon from '@ui/icons/lock';
@@ -17,15 +15,31 @@ const AuthForm = () => {
     alert(JSON.stringify({ email, password }, null, 2));
   };
 
+  const authInputId = 'auth-password-input';
   const [passwordInputType, setPasswordInputType] =
     useState<string>('password');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const changePasswordInputType = () => {
+  const changePasswordInputType = (e?: MouseEvent) => {
+    e?.preventDefault();
     setPasswordInputType(prev => {
       return prev === 'password' ? 'text' : 'password';
     });
+    setTimeout(() => {}, 50);
+  };
+
+  const handleKeyUp = (e: KeyboardEvent) => {
+    e.stopPropagation();
+    if (e.key === 'Enter' || e.key === ' ') {
+      changePasswordInputType();
+      setTimeout(() => {
+        const inputElement = document.querySelector(`#${authInputId}`);
+        if (inputElement && inputElement instanceof HTMLInputElement) {
+          inputElement.focus();
+        }
+      }, 0);
+    }
   };
 
   return (
@@ -39,7 +53,6 @@ const AuthForm = () => {
         </div>
         <div className={styles['auth__content']}>
           <AppInput
-            key='email'
             className={styles['auth__input']}
             type='email'
             autoComplete='username'
@@ -50,7 +63,7 @@ const AuthForm = () => {
             onChange={(value: string) => setEmail(value)}
           />
           <AppInput
-            key='password'
+            id={authInputId}
             className={styles['auth__input']}
             type={passwordInputType}
             autoComplete='current-password'
@@ -61,9 +74,19 @@ const AuthForm = () => {
               prependInner: <LockIcon />,
               appendInner:
                 passwordInputType === 'password' ? (
-                  <VisibilityIcon onClick={changePasswordInputType} />
+                  <VisibilityIcon
+                    tabIndex='0'
+                    onKeyUp={handleKeyUp}
+                    onClick={changePasswordInputType}
+                    className={`${styles['auth__password-icon']}`}
+                  />
                 ) : (
-                  <VisibilityOffIcon onClick={changePasswordInputType} />
+                  <VisibilityOffIcon
+                    tabIndex='0'
+                    onKeyUp={handleKeyUp}
+                    onClick={changePasswordInputType}
+                    className={`${styles['auth__password-icon']}`}
+                  />
                 ),
             }}
             onChange={(value: string) => setPassword(value)}
