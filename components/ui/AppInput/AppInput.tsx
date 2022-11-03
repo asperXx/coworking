@@ -1,12 +1,14 @@
 import { cloneElement } from 'react';
 
+import { InputIconPositions } from '@/types/common';
+
 import styles from './AppInput.module.scss';
 
 export interface AppInputProps {
   label?: string;
   className?: string;
   children?: React.ReactNode;
-  icons?: { [x: string]: JSX.Element };
+  icons?: InputIconPositions;
   [x: string]: any;
 }
 
@@ -37,20 +39,18 @@ const AppInput = ({
         {...props}
       />
       <label className={styles['input__label']}>{label}</label>
-      {hasPrependInnerIcon
-        ? cloneElement(icons.prependInner, {
-            className: `${styles['input__icon']} ${
-              styles['input__icon_prepend-inner']
-            } ${icons.prependInner.props?.className || ''}`,
-          })
-        : ''}
-      {hasAppendInnerIcon
-        ? cloneElement(icons.appendInner, {
-            className: `${styles['input__icon']} ${
-              styles['input__icon_append-inner']
-            } ${icons.appendInner.props?.className || ''}`,
-          })
-        : ''}
+      {hasPrependInnerIcon &&
+        cloneElement(icons.prependInner, {
+          className: `${styles['input__icon']} ${
+            styles['input__icon_prepend-inner']
+          } ${icons.prependInner.props?.className || ''}`,
+        })}
+      {hasAppendInnerIcon &&
+        cloneElement(icons.appendInner, {
+          className: `${styles['input__icon']} ${
+            styles['input__icon_append-inner']
+          } ${icons.appendInner.props?.className || ''}`,
+        })}
     </div>
   );
 };

@@ -16,9 +16,14 @@
   transition-timing-function: var(--default-timing-function);
   cursor: pointer;
 
-  &:focus-visible,
-  &:active {
+  &:focus-visible:not(.button:disabled),
+  &:active:not(.button:disabled) {
     border: 2px solid var(--active-element-color);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 
   &__label {
@@ -35,8 +40,8 @@
       }
     }
 
-    &:focus-visible,
-    &:active {
+    &:focus-visible:not(.button:disabled),
+    &:active:not(.button:disabled) {
       background-color: var(--secondary-bg-color);
       box-shadow: var(--active-element-primary-shadow);
 

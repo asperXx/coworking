@@ -26,20 +26,23 @@ const AuthForm = () => {
     setPasswordInputType(prev => {
       return prev === 'password' ? 'text' : 'password';
     });
-    setTimeout(() => {}, 50);
+    setTimeout(() => {
+      const inputElement = document.querySelector(`#${authInputId}`);
+      if (inputElement && inputElement instanceof HTMLInputElement) {
+        inputElement.focus();
+      }
+    }, 0);
   };
 
   const handleKeyUp = (e: KeyboardEvent) => {
     e.stopPropagation();
     if (e.key === 'Enter' || e.key === ' ') {
       changePasswordInputType();
-      setTimeout(() => {
-        const inputElement = document.querySelector(`#${authInputId}`);
-        if (inputElement && inputElement instanceof HTMLInputElement) {
-          inputElement.focus();
-        }
-      }, 0);
     }
+  };
+
+  const onSignUp = (e: MouseEvent) => {
+    e.preventDefault();
   };
 
   return (
@@ -96,6 +99,10 @@ const AuthForm = () => {
         <div className={styles['auth__controls']}>
           <AppButton
             label='Continue'
+            disabled={email.length === 0 || password.length === 0}
+            {...(email.length === 0 || password.length === 0
+              ? { title: 'Fill in all the fields' }
+              : {})}
             className={styles['auth__button']}
             type='submit'
           />
@@ -103,6 +110,8 @@ const AuthForm = () => {
             label='Sign up'
             className={styles['auth__button']}
             color='secondary'
+            type='button'
+            onClick={onSignUp}
           />
         </div>
       </form>

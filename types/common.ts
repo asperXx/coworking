@@ -6,8 +6,8 @@ export const enum Icon {
 }
 
 export interface InputIconPositions {
-  prependInner?: Icon;
-  prependOuter?: Icon;
-  appendInner?: Icon;
-  appendOuter?: Icon;
+  prependInner?: JSX.Element;
+  prependOuter?: JSX.Element;
+  appendInner?: JSX.Element;
+  appendOuter?: JSX.Element;
 }
