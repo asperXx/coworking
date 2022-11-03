@@ -85,8 +85,7 @@
       color: var(--active-element-color);
     }
 
-    &:focus-visible,
-    &:active {
+    &:focus-visible {
       border: 1px solid var(--active-element-color);
     }
   }
@@ -99,6 +98,9 @@
     border-bottom-right-radius: 0;
     padding-bottom: 80px;
     box-shadow: none;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     &__controls {
       row-gap: 15px;
