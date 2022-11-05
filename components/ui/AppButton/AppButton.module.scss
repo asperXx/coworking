@@ -6,7 +6,7 @@
   text-align: center;
   border: 2px solid transparent;
   border-radius: var(--default-border-radius);
-  background-color: var(--primary-bg-color);
+  background-color: var(--primary-btn-bg-color);
   font-size: var(--default-font-size);
   font-weight: var(--default-font-weight);
   outline: none;
@@ -33,7 +33,7 @@
   }
 
   &_primary {
-    background-color: var(--primary-bg-color);
+    background-color: var(--primary-btn-bg-color);
     .button {
       &__label {
         color: var(--primary-light-text-color);
